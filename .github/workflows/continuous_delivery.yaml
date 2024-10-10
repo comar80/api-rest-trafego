@@ -1,7 +1,7 @@
 name: Continuous Delivery 1.0
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
