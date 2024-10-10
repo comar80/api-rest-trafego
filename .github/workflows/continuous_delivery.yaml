@@ -7,7 +7,6 @@ on:
 
 env:
   IMAGE_NAME: api-trafego
-  AZURE_WEBAPP_NAME: api-trafego-dev
 
 jobs:
   build:
@@ -30,7 +29,7 @@ jobs:
           uses: docker/build-push-action@v6
           with:
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{github.sha}}
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -39,6 +38,6 @@ jobs:
             id: deploy-to-webapp
             uses: azure/webapps-deploy@v2
             with:
-              app-name: ${{ env.AZURE_WEBAPP_NAME }}
+              app-name: 'api-trafego-dev'
               publish-profile: ${{ secrets.AZURE_PROFILE }}
-              images: 'ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{github.sha}}'
+              images: '${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest'
