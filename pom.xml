@@ -16,6 +16,8 @@
 	<properties>
 		<java.version>21</java.version>
 		<springdoc-openapi.version>2.5.0</springdoc-openapi.version>
+		<mysql-connector-java.version>8.0.33</mysql-connector-java.version>
+		<junit-jupiter-api.version>5.11.0</junit-jupiter-api.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -76,6 +78,20 @@
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${springdoc-openapi.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>${mysql-connector-java.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit-jupiter-api.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
