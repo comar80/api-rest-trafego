@@ -42,7 +42,7 @@ public class AuthController {
 
         Authentication auth = authenticationManager.authenticate(usernamePassword);
 
-        String token = tokenService.gerarToken((Usuario) auth.getPrincipal());
+        String token = tokenService.generateToken((Usuario) auth.getPrincipal());
 
         return ResponseEntity.ok(new TokenDTO(token));
     }
