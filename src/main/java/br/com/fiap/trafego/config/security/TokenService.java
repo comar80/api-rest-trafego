@@ -1,12 +1,10 @@
 package br.com.fiap.trafego.config.security;
 
+import br.com.fiap.trafego.model.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-
-import br.com.fiap.trafego.model.Usuario;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -18,44 +16,48 @@ import java.time.ZoneOffset;
 public class TokenService {
 
     @Value("${minha.chave.secreta}")
-    private String secret;
+    private String palavraSecreta;
 
-    public String generateToken(Usuario usuario) {
+    public String gerarToken(Usuario usuario){
 
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
+            Algorithm algorithm = Algorithm.HMAC256(palavraSecreta);
+
             String token = JWT.create()
-                    .withIssuer("auth-api")
-                    .withSubject(usuario.getUsername())
-                    .withExpiresAt(generateExpirationDate())
+                    .withIssuer("trafego")
+                    .withSubject(usuario.getEmail())
+                    .withExpiresAt(gerarDataDeExpiracao())
                     .sign(algorithm);
 
             return token;
-
-        } catch (JWTCreationException e) {
-            throw new RuntimeException("Erro ao gerar o token", e);
+        } catch (JWTCreationException e){
+            throw new RuntimeException("Não foi possível gerar o token!");
         }
+
     }
 
-    public String validateToken(String token) {
+    public String validarToken(String token){
 
         try {
+            Algorithm algorithm = Algorithm.HMAC256(palavraSecreta);
 
-            Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer("auth-api")
+                    .withIssuer("trafego")
                     .build()
                     .verify(token)
                     .getSubject();
 
-        } catch (JWTVerificationException e) {
+        }catch (JWTVerificationException e){
             return "";
         }
     }
 
-
-    public Instant generateExpirationDate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+    private Instant gerarDataDeExpiracao(){
+        return LocalDateTime
+                .now()
+                .plusHours(2)
+                .toInstant(ZoneOffset.of("-03:00"));
     }
+
 
 }

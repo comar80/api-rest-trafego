@@ -2,16 +2,13 @@ package br.com.fiap.trafego;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,12 +23,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import br.com.fiap.trafego.config.security.TokenService;
 import br.com.fiap.trafego.config.security.VerificarToken;
-import br.com.fiap.trafego.controller.UsuarioController;
 import br.com.fiap.trafego.dto.UsuarioCadastroDTO;
 import br.com.fiap.trafego.dto.UsuarioExibicaoDTO;
 import br.com.fiap.trafego.model.UsuarioRole;
 import br.com.fiap.trafego.service.UsuarioService;
-import jakarta.persistence.EntityManagerFactory;
 
 @ActiveProfiles("test")
 @SpringBootTest
