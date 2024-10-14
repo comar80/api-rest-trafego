@@ -26,7 +26,7 @@ public class MotoristaController {
         return motoristaService.salvarMotorista(motorista);
     }
 
-    @GetMapping("/motoristas")
+    @GetMapping("/motoristas/all")
     @ResponseStatus(HttpStatus.OK)
     public Page<MotoristaExibicaoDTO> listarTodos(
             @PageableDefault(size = 5, page = 0)
@@ -45,7 +45,7 @@ public class MotoristaController {
         }
     }
 
-    @RequestMapping(value = "/motoristas", params = "nome")
+    @RequestMapping(value = "/motoristas/nome", params = "nome", method = RequestMethod.GET)
     public ResponseEntity<MotoristaExibicaoDTO> buscarPorNome(
             @RequestParam String nome){
         try {
@@ -55,7 +55,7 @@ public class MotoristaController {
         }
     }
 
-    @RequestMapping(value = "/motoristas", params = "cpf")
+    @RequestMapping(value = "/motoristas/cpf", params = "cpf", method = RequestMethod.GET)
     public ResponseEntity<MotoristaExibicaoDTO> buscarPorCpf(
             @RequestParam String cpf){
         try {

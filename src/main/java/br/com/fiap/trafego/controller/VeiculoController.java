@@ -28,7 +28,7 @@ public class VeiculoController {
         return veiculoService.salvarVeiculo(veiculo);
     }
 
-    @GetMapping("/veiculos")
+    @GetMapping("/veiculos/all")
     @ResponseStatus(HttpStatus.OK)
     public Page<VeiculoExibicaoDTO> listarTodos(
             @PageableDefault(size = 5, page = 0)
@@ -47,7 +47,7 @@ public class VeiculoController {
         }
     }
 
-    @RequestMapping(value = "/veiculos", params = "placa")
+    @RequestMapping(value = "/veiculos/placa", params = "placa", method = RequestMethod.GET)
     public ResponseEntity<VeiculoExibicaoDTO> buscarPorPlaca(
             @RequestParam String placa){
         try {
@@ -57,14 +57,14 @@ public class VeiculoController {
         }
     }
 
-    @RequestMapping(value = "/veiculos", params = "ano")
+    @RequestMapping(value = "/veiculos/ano", params = "ano", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<VeiculoExibicaoDTO> buscarPorAno(
             @RequestParam Integer ano){
         return veiculoService.buscarPorAno(ano);
     }
 
-    @RequestMapping(value = "/veiculos", params = {"anoMinimo", "anoMaximo"})
+    @RequestMapping(value = "/veiculos/anoIntervalo", params = {"anoMinimo", "anoMaximo"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<VeiculoExibicaoDTO> listarVeiculosPorAno(
             @RequestParam Integer anoMinimo,

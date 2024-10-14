@@ -4,6 +4,7 @@ import br.com.fiap.trafego.dto.UsuarioCadastroDTO;
 import br.com.fiap.trafego.dto.UsuarioExibicaoDTO;
 import br.com.fiap.trafego.service.UsuarioService;
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +19,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/usuarios")
-    @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioExibicaoDTO salvar(@RequestBody @Valid UsuarioCadastroDTO usuario){
-        return usuarioService.salvarUsuario(usuario);
-    }
-
-    @GetMapping("/usuarios")
+    @GetMapping("/usuarios/all")
     @ResponseStatus(HttpStatus.OK)
     public List<UsuarioExibicaoDTO> listarTodos(){
         return usuarioService.listarTodos();
@@ -35,7 +30,13 @@ public class UsuarioController {
             return ResponseEntity.ok(usuarioService.buscarPorId(usuarioId));
     }
 
-    @RequestMapping(value = "/usuarios", params = "nome")
+    @PostMapping("/usuarios")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UsuarioExibicaoDTO salvar(@RequestBody @Valid UsuarioCadastroDTO usuario){
+        return usuarioService.salvarUsuario(usuario);
+    }
+
+    @RequestMapping(value = "/usuarios/nome", params = "nome", method = RequestMethod.GET)
     public ResponseEntity<UsuarioExibicaoDTO> buscarPorNome(@RequestParam String nome){
         try {
             return ResponseEntity.ok(usuarioService.buscarPorNome(nome));
@@ -44,7 +45,7 @@ public class UsuarioController {
         }
     }
 
-    @RequestMapping(value = "/usuarios", params = "email")
+    @RequestMapping(value = "/usuarios/email", params = "email", method = RequestMethod.GET)
     public ResponseEntity<UsuarioExibicaoDTO> buscarPorEmail(@RequestParam String email){
         try {
             return ResponseEntity.ok(usuarioService.buscarPorEmail(email));
