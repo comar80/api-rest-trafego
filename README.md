@@ -8,4 +8,4 @@ docker compose up --build
 ```
 
 ## MER
-![MER do Banco de Dados](https://github.com/comar80/api-rest-trafego/blob/main/MER.jpg)
+![MER do Banco de Dados da Aplicação](https://github.com/comar80/api-rest-trafego/blob/main/MER.jpg)
