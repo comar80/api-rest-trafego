@@ -2,8 +2,9 @@ name: Continuous Integration 1.0
 
 on:
   pull_request:
+  push:
     branches:
-      - main
+      - "*"
 jobs:
   builds:
     runs-on: ubuntu-latest
