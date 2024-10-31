@@ -16,16 +16,16 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("API Documentation")
-                        .description("API com autenticação JWT")
-                        .version("1.0"))
-                .addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
-                .components(new Components()
-                        .addSecuritySchemes("Bearer Authentication",
-                                new SecurityScheme()
-                                        .type(SecurityScheme.Type.HTTP)
-                                        .scheme("bearer")
-                                        .bearerFormat("JWT")
-                                        .in(SecurityScheme.In.HEADER)
-                                        .name("Authorization")));
+                        .description("API para Registro de Tráfego")
+                        .version("1.0"));
+                // .addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
+                // .components(new Components()
+                //         .addSecuritySchemes("Bearer Authentication",
+                //                 new SecurityScheme()
+                //                         .type(SecurityScheme.Type.HTTP)
+                //                         .scheme("bearer")
+                //                         .bearerFormat("JWT")
+                //                         .in(SecurityScheme.In.HEADER)
+                //                         .name("Authorization")));
     }
 }

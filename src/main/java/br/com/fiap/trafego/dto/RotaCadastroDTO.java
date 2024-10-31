@@ -15,17 +15,17 @@ public record RotaCadastroDTO(
         String destino,
 
         @NotNull(message = "Distância é obrigatória")
-        @Positive
+        @Positive(message = "Deve ser maior que 0")
         Double distancia,
 
         @NotNull(message = "Tempo Médio é obrigatório")
-        @Positive
+        @Positive(message = "Deve ser maior que 0")
         Double tempoMedio,
 
         String condicoesEspeciais,
 
         @NotNull(message = "Velocidade Máxima é obrigatória")
-        @Positive
+        @Positive(message = "Deve ser maior que 0")
         Integer velocidadeMaximaPermitida
 ) {
 }

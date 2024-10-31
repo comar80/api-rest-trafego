@@ -16,7 +16,7 @@ public record VeiculoCadastroDTO(
         String modelo,
 
         @NotNull(message = "O ano é obrigatório")
-        @Positive
+        @Positive(message = "O ano deve ser maior que 0")
         Integer anoFabricacao,
 
         @NotBlank(message = "A placa é obrigatória!")
